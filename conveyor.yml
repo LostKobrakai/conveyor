@@ -1,0 +1,32 @@
+---
+# The folder conveyor will  put all it's things
+tmpDir: .conveyor
+
+# The versions of processwire to test against
+# Does match be newest matching version
+# 2.8 currently not supported
+testTags:
+  - "2.6"
+  - "3.0"
+
+# Database settings
+db:
+  host: localhost
+  port: 3306
+  user: root
+  pass: ''
+  name: pw_conveyor
+
+# Copy the needed files to the test instances
+copySources:
+  - source: "conveyor.yml"
+    destination: "site/templates/"
+
+# Run any commands on the test instance (e.g. composer)
+# Executed on the test instance folder
+beforeCmds:
+  - touch before.txt
+
+# The command to trigger the test
+# Executed on the root folder
+testCmd: ls -la

@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use ProcessWireTestEnvs\Console\RunCommand;
+
+$runCommand = new RunCommand();
+
+$app = new Application('Conveyor', "1.0.0");
+$app->add($runCommand);
+$app->setDefaultCommand($runCommand->getName(), true);
+$app->run();
