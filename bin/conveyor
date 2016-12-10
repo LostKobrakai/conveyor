@@ -1,7 +1,24 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+$vendorDir = 'vendor';
+
+if ($composerPath = realpath(getcwd() . '/composer.json')) {
+	$composerJson = json_decode(file_get_contents($composerPath), true);
+	$vendorDir = isset($composerJson['vendor-dir']) ? $composerJson['vendor-dir'] : $vendorDir;
+}
+
+if ($relative = realpath(getcwd() . "/{$vendorDir}/autoload.php")) {
+	include $relative;
+}
+
+if (!$absolute = realpath(__DIR__ . '/../../../autoload.php')) {
+	$absolute = realpath(__DIR__ . '/../vendor/autoload.php');
+}
+
+if ($absolute && $relative !== $absolute) {
+	include $absolute;
+}
 
 use Symfony\Component\Console\Application;
 use ProcessWireTestEnvs\Console\RunCommand;
