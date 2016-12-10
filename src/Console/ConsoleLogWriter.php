@@ -63,9 +63,9 @@ class ConsoleLogWriter
 			4 => '<debug>%s%s</debug>',
 		][$level];
 
-		$prefix = '[PwT]';
+		$prefix = '📦 >';
 
-		$message = $level == 0 ? ' ' . str_pad($message, $this->width - strlen($prefix) - 1) : $message;
+		$message = $level == 0 ? ' ' . str_pad($message, $this->width - strlen($prefix) + 2) : $message;
 
 		$this->output->writeln(sprintf($style, $prefix, $message), $verbosity);
 	}

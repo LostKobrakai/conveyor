@@ -76,6 +76,8 @@ class RunCommand extends Command
 			? null
 			: function($success, $tag) use($input, $output) {
 				$helper = $this->getHelper('question');
+				if($input->getOption('pause') == 'failure' && $success == Runner::TEST_RESULTS_SUCCESS) return;
+
 				$message = [
 					Runner::TEST_RESULTS_SUCCESS => 'The last test run was successful.',
 					Runner::TEST_RESULTS_ERROR => 'The last test run did fail.'
@@ -83,7 +85,7 @@ class RunCommand extends Command
 				$output->writeln($message);
 				$question = new ChoiceQuestion(
 					'How would you like to continue?',
-					array(Runner::ACTION_REPEAT, Runner::ACTION_STOP, Runner::ACTION_CONTINUE),
+					array(1 => Runner::ACTION_REPEAT, 2 => Runner::ACTION_STOP, 3 => Runner::ACTION_CONTINUE),
 					Runner::ACTION_REPEAT
 				);
 
