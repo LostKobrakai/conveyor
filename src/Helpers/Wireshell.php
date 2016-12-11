@@ -41,7 +41,10 @@ class Wireshell {
 	 * @var array
 	 */
 	protected static $wireshellVersions = [
-		"2f62313" => ["supportsPW" => "/^3/"],
+		"2f62313" => [
+			"supportsPW" => "/^3/",
+			"needsPatch" => "1.0.0.patch"
+		],
 		"0.6.0" => [
 			"supportsPW" => "/^2.[4-7](\..*)?$/",
 			"needsPatch" => "0.6.0.patch"
@@ -123,7 +126,7 @@ class Wireshell {
 			}
 		}
 		// install dependencies (runs always because might fail during installation)
-		Cmd::run("composer install", [], ['cwd' => $installPath]);
+		Cmd::run("composer install", ['--no-dev'], ['cwd' => $installPath]);
 		// return path to wireshell executable
 		return Path::join($installPath, "wireshell");
 	}
