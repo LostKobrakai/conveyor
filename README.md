@@ -23,7 +23,7 @@ Are you building a module, or a template and you need to make sure it works in a
 
 ## Requirements
 
-- PHP 5.6 or greater
+- PHP 5.5 or greater
 - Composer (https://getcomposer.org)
 - Git (https://git-scm.com)
 - MySQL or MariaDB 5.0.15 or greater
